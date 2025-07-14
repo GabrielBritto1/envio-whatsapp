@@ -33,10 +33,10 @@ services:
     platform: linux/x86_64
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
-      MYSQL_USER: ${DB_USERNAME:-username}
+      MYSQL_DATABASE: ${DB_DATABASE:-envio-whatsapp}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-envio-whatsapp}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-envio-whatsapp}
+      MYSQL_USER: ${DB_USERNAME:-envio-whatsapp}
     volumes:
       - ./.docker/mysql/dbdata:/var/lib/mysql
     ports:
@@ -51,7 +51,7 @@ services:
     ports:
       - "6380:6379"
     networks:
-      - evolution-net
+      - laravel
       - default
 
   api:
@@ -63,9 +63,9 @@ services:
     volumes:
       - evolution_instances:/evolution/instances
     networks:
-      - evolution-net
+      - laravel
     env_file:
-      - .env
+      - .env.evolution
 
   postgres:
     image: postgres:13
@@ -77,7 +77,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     networks:
-      - evolution-net
+      - laravel
       - default
 
 volumes:
@@ -86,6 +86,4 @@ volumes:
 
 networks:
   laravel:
-    driver: bridge
-  evolution-net:
     driver: bridge
