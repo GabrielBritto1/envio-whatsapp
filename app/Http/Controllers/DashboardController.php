@@ -12,7 +12,7 @@ class DashboardController extends Controller
     */
    public function index()
    {
-      $clientes = Cliente::all();
+      $clientes = Cliente::paginate(10);
       return view('dashboard', compact('clientes'));
    }
 

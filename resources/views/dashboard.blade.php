@@ -22,6 +22,9 @@
             </div>
          </div>
       </div>
+      <div class="max-w-6xl mx-auto sm:px-5 lg:px-7 mt-3">
+         {{ $clientes->links() }}
+      </div>
    </div>
 
    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
